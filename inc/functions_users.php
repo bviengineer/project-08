@@ -8,7 +8,7 @@ function findUserByUsername($username) {
     try {
         $query = $db->prepare('SELECT * from users where username = :username');
         $result->bindParam(':username', $username);
-        $result->excute();
+        $result->execute();
         return $result->fetch(PDO::FETCH_ASSOC);
 
     } catch (\Exception $e) {
