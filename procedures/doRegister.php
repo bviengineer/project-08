@@ -20,3 +20,6 @@ $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
 // Creating a new user
 $user = createUser($email, $hashedPwd);
+
+// Redirect user to the home page
+rediret('/');
