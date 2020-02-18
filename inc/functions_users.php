@@ -7,9 +7,9 @@ function findUserByEmail($email) {
 
     try {
         $query = $db->prepare('SELECT * from users where email = :email');
-        $query->bindParam(':email', $email);
-        $quey->excute();
-        return $query->fetch(PDO::FETCH_ASSOC);
+        $result->bindParam(':email', $email);
+        $result->excute();
+        return $result->fetch(PDO::FETCH_ASSOC);
 
     } catch (\Exception $e) {
         throw $e;
