@@ -103,3 +103,8 @@ function deleteTask($task_id)
     }
     return true;
 }
+
+
+function findUserByEmail($email) {
+
+}
