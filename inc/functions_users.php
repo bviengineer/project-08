@@ -2,12 +2,12 @@
 
 //user functions
 
-function findUserByEmail($email) {
+function findUserByUsername($username) {
     global $db;
 
     try {
-        $query = $db->prepare('SELECT * from users where email = :email');
-        $result->bindParam(':email', $email);
+        $query = $db->prepare('SELECT * from users where username = :username');
+        $result->bindParam(':username', $username;
         $result->excute();
         return $result->fetch(PDO::FETCH_ASSOC);
 
@@ -16,16 +16,16 @@ function findUserByEmail($email) {
     }
 }
 
-function createUser($email, $password) {
+function createUser($username, $password) {
     global $db;
 
     try {
-        $query = $db->prepare('INSERT INTO users (email, password, role_id) VALUES (:email, :password, 2)' );
+        $query = $db->prepare('INSERT INTO users (username, password, role_id) VALUES (:username, :password, 2)' );
         $result->prepare($query);
-        $result->bindParam(':email', $email);
+        $result->bindParam(':username', $username);
         $result->bindParam(':password', $password);
         $result->execute();
-        return findUserByEmail($emamil);
+        return findUserByEmail($username);
 
     } catch (\Exception $e) {
         throw $e;
