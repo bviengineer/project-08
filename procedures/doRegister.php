@@ -9,3 +9,8 @@ $email->requet()->get('email');
 if ($password != $confirmPassword) {
     redirect('/register.php'); 
 }
+
+$user = findUserByEmail($email);
+if (!empty($user)) {
+    redirect('/register.php');
+}
