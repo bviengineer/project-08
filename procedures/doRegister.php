@@ -14,3 +14,5 @@ $user = findUserByEmail($email);
 if (!empty($user)) {
     redirect('/register.php');
 }
+
+$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
