@@ -14,3 +14,11 @@ if (!password_verify(request()->get('password'), $user['password'])) {
 
 // JWT | JOT
 $expireTime = time() + 3600;
+$jwt = \Firebase\JWT\JWT::encode([
+    'iss' => request()->getBaseURL(),
+    'sub' => "{user['id']}",
+    'exp' => $expireTime,
+    'iat' => time(),
+    'nbf' => time(),
+    'is_admin' => $user['role_id'] == 1
+], getenv("SECRET_KEY"), 'HS256');
