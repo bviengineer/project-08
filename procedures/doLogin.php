@@ -22,3 +22,6 @@ $jwt = \Firebase\JWT\JWT::encode([
     'nbf' => time(),
     'is_admin' => $user['role_id'] == 1
 ], getenv("SECRET_KEY"), 'HS256');
+
+// Cookie
+$accessToken = new Symfony\Component\HttpFoundation\Cookie('access_token', $jwt, $expireTime, "/", getenv("COOKIE_DOMAIN"));
