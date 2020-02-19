@@ -15,7 +15,7 @@ if (!password_verify(request()->get('password'), $user['password'])) {
 // JWT | JOT
 $expireTime = time() + 3600;
 $jwt = \Firebase\JWT\JWT::encode([
-    'iss' => request()->getBaseURL(),
+    'iss' => request()->getBaseUrl(),
     'sub' => "{user['id']}",
     'exp' => $expireTime,
     'iat' => time(),
