@@ -1,9 +1,8 @@
 <?php
 require_once 'inc/bootstrap.php';
-if ($request()->cookies->has('access_token')){
+if (request()->cookies->has('access_token')) {
   echo "logged in";
 }
-
 $pageTitle = "Time Tracker";
 $page = null;
 
