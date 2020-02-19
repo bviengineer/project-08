@@ -11,3 +11,6 @@ if (!empty($user)) {
 if (!password_verify(request()->get('password'), $user['password'])) {
     redirect('/login.php');
 }
+
+// JWT | JOT
+$expireTime = time() + 3600;
