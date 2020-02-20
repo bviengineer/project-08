@@ -26,4 +26,4 @@ $jwt = \Firebase\JWT\JWT::encode([
 // Cookie
 $accessToken = new Symfony\Component\HttpFoundation\Cookie('access_token', $jwt, $expireTime, "/", getenv("COOKIE_DOMAIN"));
 
-redirect('/', ['cookies' => [$accessToken]]);
+redirect('/task_list.php', ['cookies' => [$accessToken]]);
