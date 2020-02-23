@@ -1,7 +1,7 @@
 <?php 
 require __DIR__.'/../inc/bootstrap.php';
 
-// Verifies whether the username provided alreaady exist in the database
+// Verifies that the user entered a username
 $user = findUserByUsername(request()->get('username'));
 if (empty($user)) {
     redirect('/login.php');
