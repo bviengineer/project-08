@@ -18,13 +18,13 @@ function findUserByAccessToken() {
     global $db;
 
     try {
-        $userId = decodeJwt('sub');
+        $userName = decodeJwt('sub');
     } catch (\Exception $e) {
         throw $e;
     }
     try {
-        $query = $db->prepare('SELECT * from users where username = :userId');
-        $query->bindParam(':userId', $userId);
+        $query = $db->prepare('SELECT * from users where username = :userName');
+        $query->bindParam(':userName', $userName);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
