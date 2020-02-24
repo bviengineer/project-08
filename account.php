@@ -9,10 +9,9 @@ include 'inc/header.php';
 <div class="col-container page-container">
     <div class="col col-70-md col-60-lg col-center">
         <h2 class="form-signin-heading">My Account</h2>
+        <h4>Change Password</h4>
         <?php echo display_errors(); ?>
         <?php echo display_success(); ?>
-        <h4>Change Password</h4>
-
         <form class="form-container" method="post" action="/inc/changePassword.php">
             <table class="items">
                 <tr>
