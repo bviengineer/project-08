@@ -9,13 +9,6 @@ include 'inc/header.php';
     <div class="col-container actions-container">
 
       <h1>Welcome</h1>
-      <?php 
-        if (request()->cookies->has('access_token')) {
-          echo "logged in";
-        } else {
-          echo "not logged in";
-        }
-      ?>
       <p class="actions-copy">What would you like to do today?</p>
       <div class="actions-wrapper">
         <ul class="actions">
