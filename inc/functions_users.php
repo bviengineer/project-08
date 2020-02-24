@@ -61,7 +61,7 @@ function display_errors() {
     $messages = $session->getFlashBag()->get('error');
     $response = '<div class="alert alert-danger alert-dismissable">';
     foreach ($messages as $message) {
-        $response .= '{$message} <br>';
+        $response .= "$message <br>";
     }
     $response .= '</div>';
     return $response;
