@@ -66,3 +66,21 @@ function display_errors() {
     $response .= '</div>';
     return $response;
 }
+
+function display_success() {
+    global $session;
+
+    if(!$session->getFlashBag()->has('success')) {
+        return;
+    }
+
+    $messages = $session->getFlashBag()->get('success');
+
+    $response = '<div class="alert alert-success alert-dismissable">';
+    foreach ($messages as $message) {
+        $response .= "{$message}<br>";
+    }
+    $response .= '</div>';
+
+    return $response;
+}
