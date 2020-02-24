@@ -51,3 +51,18 @@ function requireAuth() {
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
 }
+
+function display_errors() {
+    global $session;
+
+    if (!$session->getFlashBag()->has('error')) {
+        return;
+    }
+    $messages = $session->getFlashBag()->get('error');
+    $response = '<div class="alert alert-danger alert-dismissable">';
+    foreach ($messages as $message) {
+        $response .= '{$message} <br>';
+    }
+    $response .= '</div>';
+    return $response;
+}
