@@ -14,6 +14,19 @@ function findUserByUsername($username) {
         throw $e;
     }
 }
+function findUserByAccessToken() {
+    global $db;
+    try {
+        $query = $db->prepare('SELECT * from users where username = :username');
+        $query->bindParam(':username', $username);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function createUser($username, $password) {
     global $db;
     try {
