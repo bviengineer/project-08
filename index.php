@@ -1,8 +1,6 @@
 <?php
 require_once 'inc/bootstrap.php';
-// if (request()->cookies->has('access_token')) {
-//   echo "logged in";
-// }
+
 $pageTitle = "Time Tracker";
 $page = null;
 
@@ -11,6 +9,11 @@ include 'inc/header.php';
     <div class="col-container actions-container">
 
       <h1>Welcome</h1>
+      <?php 
+        if (request()->cookies->has('access_token')) {
+          echo "logged in";
+        }
+      ?>
       <p class="actions-copy">What would you like to do today?</p>
       <div class="actions-wrapper">
         <ul class="actions">
