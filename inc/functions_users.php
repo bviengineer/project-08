@@ -39,6 +39,20 @@ function createUser($username, $password) {
         throw $e;
     }
 }
+function decodeJwt($prop = null) {
+    \Firebase\JWT\JWT::$leeway = 1;
+    $jwt = \Firebase\JWT\JWT::decode(
+        request()->cookies->get('access_token'),
+        getenv('SECRET_KEY'),
+        ['HS256']
+    );
+
+    if ($prop === null) {
+        return $jwt;
+    }
+    
+    return $jwt->{$prop};
+}
 
 function isAuthenticated() {
     if (!request()->cookies->has('access_token')) {
@@ -46,12 +60,7 @@ function isAuthenticated() {
     }
 
     try {
-        \Firebase\JWT\JWT::$leeway = 1;
-        \Firebase\JWT\JWT::decode(
-            request()->cookies->get('access_token'),
-            getenv('SECRET_KEY'),
-            ['HS256']
-        );
+        decodeJwt();
         return true;
     } catch (\Exception $e) {
         return false;
