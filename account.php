@@ -12,7 +12,7 @@ include 'inc/header.php';
         <h4>Change Password</h4>
         <?php echo display_errors(); ?>
         <?php echo display_success(); ?>
-        <form class="form-container" method="post" action="/inc/changePassword.php">
+        <form class="form-container" method="post" action="/procedures/changePassword.php">
             <table class="items">
                 <tr>
                     <th><label for="inputCurrentPassword" class="sr-only">Current Password<span class="required">*</span></label></th>
