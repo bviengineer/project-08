@@ -16,3 +16,8 @@ if (empty($user)) {
     $session->getFlashBag()->add('error', 'Some error Happened. Try again.  If it continues, please log out and log back in.');
     redirect('/acoount.php');
 }
+
+if (!password_verify($currentPassword, $user['password'])) {
+    $session->getFlashBag()->add('error', 'Current password is incorrect. Please try again');
+    redirect('/account.php');
+}
