@@ -12,6 +12,8 @@ include 'inc/header.php';
       <?php 
         if (request()->cookies->has('access_token')) {
           echo "logged in";
+        } else {
+          echo "not logged in";
         }
       ?>
       <p class="actions-copy">What would you like to do today?</p>
