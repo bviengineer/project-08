@@ -4,7 +4,7 @@ require __DIR__.'/../inc/bootstrap.php';
 // Verifies that the user entered a username
 $user = findUserByUsername(request()->get('username'));
 if (empty($user)) {
-    $session->getFlashBag()->add('error', 'Username not found');
+    $session->getFlashBag()->add('error', 'Username was not found');
     redirect('/login.php');
 }
 
@@ -17,7 +17,7 @@ if (!password_verify(request()->get('password'), $user['password'])) {
 $expireTime = time() + 3600;
 $jwt = \Firebase\JWT\JWT::encode([
     'iss' => request()->getBaseUrl(),
-    'sub' => "{user['id']}",
+    'sub' => "{$user['username']}",
     'exp' => $expireTime,
     'iat' => time(),
     'nbf' => time(),
