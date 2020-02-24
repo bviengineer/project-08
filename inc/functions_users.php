@@ -121,7 +121,7 @@ function display_success() {
 
     $response = '<div class="alert alert-success alert-dismissable">';
     foreach ($messages as $message) {
-        $response .= "{$message}<br>";
+        $response .= "$message <br>";
     }
     $response .= '</div>';
 
