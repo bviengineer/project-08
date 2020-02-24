@@ -109,6 +109,7 @@ function display_errors() {
     return $response;
 }
 
+// From course notes: https://teamtreehouse.com/library/user-profile-2
 function display_success() {
     global $session;
 
