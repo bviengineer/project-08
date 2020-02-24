@@ -14,7 +14,7 @@ if ($newPassword != $confirmedPassword) {
 $user = findUserByAccessToken();
 if (empty($user)) {
     $session->getFlashBag()->add('error', 'Some error Happened. Try again.  If it continues, please log out and log back in.');
-    redirect('/acoount.php');
+    redirect('/account.php');
 }
 
 if (!password_verify($currentPassword, $user['password'])) {
