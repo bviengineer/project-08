@@ -1,7 +1,8 @@
 <?php
 require 'inc/bootstrap.php';
 requireAuth();
-// assignUserTasks();
+//assignUserTasks();
+displayUserTasks();
 
 $pageTitle = "Task List | Time Tracker";
 $page = "tasks";
@@ -33,7 +34,7 @@ include 'inc/header.php';
 
             <div class="form-container">
                 <ul class="action_filter">
-                    <li<?php if ($filter=='incomplete') echo ' class="on"'; assignUserTasks(); ?>><a href="task_list.php">Incomplete</a></li>
+                    <li<?php if ($filter=='incomplete') echo ' class="on"'; ?><a href="task_list.php">Incomplete</a></li>
                     <li<?php if ($filter=='complete') echo ' class="on"'; ?>><a href="task_list.php?filter=complete">Complete</a></li>
                     <li<?php if ($filter=='all') echo ' class="on"'; ?>><a href="task_list.php?filter=all">All</a></li>
                 </ul>
