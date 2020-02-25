@@ -2,6 +2,13 @@
 
 //user functions
 
+/* Assign all new tasks to the logged in user
+ * isUserRole = 2 
+ * On task list page: 
+ * if a task as a status of 0 or not completed assign it to the authenticated user
+*/ 
+
+
 // Fin a user by username
 function findUserByUsername($username) {
     global $db;
@@ -95,6 +102,45 @@ function requireAuth() {
         $accessToken = new \Symfony\Component\HttpFoundation\Cookie('access_token', 'Expired', time()-3600, '/', getenv('COOKIE_DOMAIN'));
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
+}
+// Assign tasks to user
+function assignUserTasks() {
+    global $db;
+
+    if (isAuthenticated()) {
+        $user = findUserByAccessToken();
+        //var_dump($userByToken['username']);
+        
+       //$user = findUserByUsername($userByToken['username']);
+        
+        $tasks = getIncompleteTasks();
+        echo "<pre>";
+        var_dump($user['id']);
+        echo "</pre>";
+      //  $id;
+        echo "<pre>";
+        foreach ($tasks as $key=>$value) {
+            $id = $value;
+            var_dump($id);
+            
+            $query = $db->prepare('UPDATE tasks SET user_id = :id WHERE users.id = :user['id');
+            $query->bindParam(':id', $id);
+            $query->bindParam(':user', $user);
+            $query->execute();
+        }
+        echo "</pre>";
+        // try {
+        //     $query = $db->prepare('UPDATE users SET task_id = ? WHERE username = :user');
+        //     $query->bindParam('?', $value['id']);
+        //     $query->bindParam(':user', $user);
+        //     $query->execute();
+        // } catch (\Exception $e) {
+        //     //return false;
+        //     return $e;
+        // }
+
+        //return true;
+        }
 }
 // Displays getFlashBag errors
 function display_errors() {
