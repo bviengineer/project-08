@@ -147,13 +147,13 @@ function displayUserTasks() {
 
     if (isAuthenticated()) {
         $user = findUserByAccessToken();
-       echo "<pre>";
-       var_dump($user['id']);
-       echo "</pre>";
+    //    echo "<pre>";
+    //    var_dump($user['id']);
+    //    echo "</pre>";
 
         $tasks = getTasks();
         
-      echo "<pre>";
+      //echo "<pre>";
         // foreach ($tasks as $key=>$value) {
             // $id = $value;
            // var_dump($tasks);
@@ -162,10 +162,10 @@ function displayUserTasks() {
             $query->bindParam(':userId', $user['id']);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
-            //return 
+            return $results;
         // }
-        var_dump($results);
-        echo "</pre>";
+        // var_dump($results);
+        // echo "</pre>";
     }
 }
 // Displays getFlashBag errors
