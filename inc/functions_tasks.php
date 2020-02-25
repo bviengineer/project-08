@@ -10,7 +10,8 @@ function getTasks($where = null)
     try {
         $statement = $db->prepare($query);
         $statement->execute();
-        $tasks = $statement->fetchAll();
+        // $tasks = $statement->fetchAll();
+        $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo "Error!: " . $e->getMessage() . "<br />";
         return false;
