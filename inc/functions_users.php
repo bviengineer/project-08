@@ -2,6 +2,7 @@
 
 //user functions
 
+// Fin a user by username
 function findUserByUsername($username) {
     global $db;
     try {
@@ -14,6 +15,7 @@ function findUserByUsername($username) {
         throw $e;
     }
 }
+// Find a user by acess token
 function findUserByAccessToken() {
     global $db;
 
@@ -32,7 +34,7 @@ function findUserByAccessToken() {
         throw $e;
     }
 }
-
+// Create a new user account
 function createUser($username, $password) {
     global $db;
     try {
@@ -45,6 +47,7 @@ function createUser($username, $password) {
         throw $e;
     }
 }
+// Update a user's password
 function updatePassword($password, $userId) {
     global $db;
 
@@ -58,7 +61,7 @@ function updatePassword($password, $userId) {
     }
     return true;
 }
-
+// Decode the JWT/JOT
 function decodeJwt($prop = null) {
     \Firebase\JWT\JWT::$leeway = 1;
     $jwt = \Firebase\JWT\JWT::decode(
@@ -73,7 +76,7 @@ function decodeJwt($prop = null) {
     
     return $jwt->{$prop};
 }
-
+// Verifies whether a user is autenticated 
 function isAuthenticated() {
     if (!request()->cookies->has('access_token')) {
         return false;
@@ -86,14 +89,14 @@ function isAuthenticated() {
         return false;
     }
 }
-
+// Require a user to authenticate
 function requireAuth() {
     if (!isAuthenticated()) {
         $accessToken = new \Symfony\Component\HttpFoundation\Cookie('access_token', 'Expired', time()-3600, '/', getenv('COOKIE_DOMAIN'));
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
 }
-
+// Displays getFlashBag errors
 function display_errors() {
     global $session;
 
@@ -108,8 +111,8 @@ function display_errors() {
     $response .= '</div>';
     return $response;
 }
-
-// From course notes: https://teamtreehouse.com/library/user-profile-2
+// Displays getFlashBag success messages
+// Obtained from course notes: https://teamtreehouse.com/library/user-profile-2
 function display_success() {
     global $session;
 
