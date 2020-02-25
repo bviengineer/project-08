@@ -112,20 +112,20 @@ function assignUserTasks() {
         //var_dump($userByToken['username']);
         
        //$user = findUserByUsername($userByToken['username']);
-        
+    //    echo "<pre>";
+    //    var_dump($user['id']);
+    //    echo "</pre>";
+
         $tasks = getIncompleteTasks();
-        echo "<pre>";
-        var_dump($user['id']);
-        echo "</pre>";
-      //  $id;
-        echo "<pre>";
+        
+       // echo "<pre>";
         foreach ($tasks as $key=>$value) {
             $id = $value;
-            var_dump($id);
+            // var_dump($id);
             
-            $query = $db->prepare('UPDATE tasks SET user_id = :id WHERE users.id = :user['id');
+            $query = $db->prepare('UPDATE tasks SET user_id = :userId WHERE id = :id');
+            $query->bindParam(':userId', $user['id']);
             $query->bindParam(':id', $id);
-            $query->bindParam(':user', $user);
             $query->execute();
         }
         echo "</pre>";
