@@ -103,44 +103,22 @@ function requireAuth() {
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
 }
-// Assign tasks to user
+// Assign new task(s) to logged in user
 function assignUserNewTasks() {
     global $db;
 
     if (isAuthenticated()) {
         $user = findUserByAccessToken();
-        //var_dump($userByToken['username']); 
-       //$user = findUserByUsername($userByToken['username']);
-    //    echo "<pre>";
-    //    var_dump($user['id']);
-    //    echo "</pre>";
+        // NOTE: $user['id'] => returns the user id of the user from the users table 
 
-        $tasks = getIncompleteTasks();
-        
-      //echo "<pre>";
-        foreach ($tasks as $key=>$value) {
-            $id = $value;
-          //  var_dump($id);
-            
-            $query = $db->prepare('UPDATE tasks SET user_id = :userId WHERE id = :id');
+        try {
+            $query = $db->prepare('UPDATE tasks SET user_id = :userId WHERE user_id IS NULL');
             $query->bindParam(':userId', $user['id']);
-            $query->bindParam(':id', $id);
             $query->execute();
+        } catch (\Exception $e) {
+            throw $e;
         }
-       // var_dump($results);
-        //echo "</pre>";
-        // try {
-        //     $query = $db->prepare('UPDATE users SET task_id = ? WHERE username = :user');
-        //     $query->bindParam('?', $value['id']);
-        //     $query->bindParam(':user', $user);
-        //     $query->execute();
-        // } catch (\Exception $e) {
-        //     //return false;
-        //     return $e;
-        // }
-
-        //return true;
-        }
+    }
 }
 // Display completed and incompleted tasks assiged to logged in user
 function displayAllUserTasks() {
@@ -176,9 +154,6 @@ function displayCompletedlUserTasks() {
             return false;
         }
        return $results;
-    //    echo "<pre>";
-    //    var_dump($results);
-    //    echo "</pre>";
     }
 }
 // Display completed tasks assiged to logged in user
@@ -197,9 +172,6 @@ function displayIncompletelUserTasks() {
             return false;
         }
        return $results;
-    //    echo "<pre>";
-    //    var_dump($results);
-    //    echo "</pre>";
     }
 }
 // Displays getFlashBag errors
