@@ -175,10 +175,10 @@ function displayCompletedlUserTasks() {
         } catch (\Exception $e) {
             return false;
         }
-       //return $results;
-       echo "<pre>";
-       var_dump($results);
-       echo "</pre>";
+       return $results;
+    //    echo "<pre>";
+    //    var_dump($results);
+    //    echo "</pre>";
     }
 }
 // Display completed tasks assiged to logged in user
@@ -196,10 +196,10 @@ function displayIncompletelUserTasks() {
         } catch (\Exception $e) {
             return false;
         }
-       //return $results;
-       echo "<pre>";
-       var_dump($results);
-       echo "</pre>";
+       return $results;
+    //    echo "<pre>";
+    //    var_dump($results);
+    //    echo "</pre>";
     }
 }
 // Displays getFlashBag errors
@@ -217,8 +217,9 @@ function display_errors() {
     $response .= '</div>';
     return $response;
 }
-// Displays getFlashBag success messages
-// Obtained from course notes: https://teamtreehouse.com/library/user-profile-2
+/* Displays getFlashBag success messages
+* Obtained from course notes: https://teamtreehouse.com/library/user-profile-2
+*/ 
 function display_success() {
     global $session;
 
