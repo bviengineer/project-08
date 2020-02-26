@@ -104,7 +104,7 @@ function requireAuth() {
     }
 }
 // Assign tasks to user
-function assignUserTasks() {
+function assignUserNewTasks() {
     global $db;
 
     if (isAuthenticated()) {
@@ -117,16 +117,17 @@ function assignUserTasks() {
 
         $tasks = getIncompleteTasks();
         
-     //  echo "<pre>";
+      //echo "<pre>";
         foreach ($tasks as $key=>$value) {
             $id = $value;
-            //var_dump($id);
+          //  var_dump($id);
             
             $query = $db->prepare('UPDATE tasks SET user_id = :userId WHERE id = :id');
             $query->bindParam(':userId', $user['id']);
             $query->bindParam(':id', $id);
             $query->execute();
         }
+       // var_dump($results);
         //echo "</pre>";
         // try {
         //     $query = $db->prepare('UPDATE users SET task_id = ? WHERE username = :user');
@@ -141,31 +142,64 @@ function assignUserTasks() {
         //return true;
         }
 }
-// Display tasks assiged to logged in user
-function displayUserTasks() {
+// Display completed and incompleted tasks assiged to logged in user
+function displayAllUserTasks() {
     global $db;
 
     if (isAuthenticated()) {
-        $user = findUserByAccessToken();
-       echo "<pre>";
-       var_dump($user['id']);
-       echo "</pre>";
+        $user = findUserByAccessToken();        
+      
+        try {
+            $query = $db->prepare('SELECT * FROM tasks WHERE user_id = :userId');
+            $query->bindParam(':userId', $user['id']);
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            return false;
+        }
+       return $results;
+    }
+}
+// Display completed tasks assiged to logged in user
+function displayCompletedlUserTasks() {
+    global $db;
 
-        //$tasks = getTasks();
-        
-      echo "<pre>";
-        // foreach ($tasks as $key=>$value) {
-            // $id = $value;
-           //var_dump($tasks);
-            
+    if (isAuthenticated()) {
+        $user = findUserByAccessToken();        
+      
+        try {
+            $query = $db->prepare('SELECT * FROM tasks WHERE user_id = :userId AND status = "1" ');
+            $query->bindParam(':userId', $user['id']);
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            return false;
+        }
+       //return $results;
+       echo "<pre>";
+       var_dump($results);
+       echo "</pre>";
+    }
+}
+// Display completed tasks assiged to logged in user
+function displayIncompletelUserTasks() {
+    global $db;
+
+    if (isAuthenticated()) {
+        $user = findUserByAccessToken();        
+      
+        try {
             $query = $db->prepare('SELECT * FROM tasks WHERE user_id = :userId AND status = "0" ');
             $query->bindParam(':userId', $user['id']);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
-            // return $results;
-        // }
-        var_dump($results);
-        echo "</pre>";
+        } catch (\Exception $e) {
+            return false;
+        }
+       //return $results;
+       echo "<pre>";
+       var_dump($results);
+       echo "</pre>";
     }
 }
 // Displays getFlashBag errors
