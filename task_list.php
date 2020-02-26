@@ -11,12 +11,15 @@ $page = "tasks";
 
 $filter = request()->get('filter');
 if ($filter=='all') {
-    $tasks = getTasks();
+    // $tasks = getTasks();
+    $tasks = displayAllUserTasks();
 } elseif ($filter=='complete') {
-    $tasks = getCompleteTasks();
+    // $tasks = getCompleteTasks();
+    $tasks = displayCompletedlUserTasks();
 } else {
     $filter = 'incomplete';
-    $tasks = getIncompleteTasks();
+    // $tasks = getIncompleteTasks();
+    $tasks = displayIncompletelUserTasks();
 }
 
 include 'inc/header.php';
