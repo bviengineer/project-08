@@ -1,8 +1,10 @@
 <?php
 require 'inc/bootstrap.php';
 requireAuth();
-//assignUserTasks();
-displayUserTasks();
+// assignUserNewTasks();
+// displayAllUserTasks();
+// displayCompletedlUserTasks();
+// displayIncompletelUserTasks();
 
 $pageTitle = "Task List | Time Tracker";
 $page = "tasks";
