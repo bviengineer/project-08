@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../inc/bootstrap.php';
-requireAuth();
+requireAuth(); // requires a user to authenticate before they can interact with this page
 
 $currentPassword = request()->get('current_password');
 $newPassword = request()->get('password');

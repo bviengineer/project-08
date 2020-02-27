@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/bootstrap.php';
-requireAuth();
+requireAuth(); // requires a user to authenticate before they can interact with this page
+
 $pageTitle = "My Account | Time Tracker";
 $page = 'account';
 
