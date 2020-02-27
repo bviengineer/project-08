@@ -10,6 +10,7 @@ if (empty($user)) {
 
 // Verfies whether the provided password matches the stored hashed password
 if (!password_verify(request()->get('password'), $user['password'])) {
+    $session->getFlashBag()->add('error', 'Your password or username is incorrect. Please try again');
     redirect('/login.php');
 }
 
