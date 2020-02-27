@@ -7,6 +7,7 @@ $username = request()->get('username');
 
 // Verify whether passwords match, redirects if different 
 if ($password != $confirmPassword) {
+    $session->getFlashBag()->add('error', 'Passwords do not match. Please try again.');
     redirect('/register.php'); 
 }
 
@@ -16,6 +17,7 @@ $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 // Verifies whether a user already exists with that username, redirects if there is 
 $user = findUserByUsername($username);
 if (!empty($user)) {
+    $session->getFlashBag()->add('error', 'Username already in use. Please try again.');
     redirect('/register.php');
 }
 
