@@ -45,7 +45,7 @@ function findUserByAccessToken() {
 function createUser($username, $password) {
     global $db;
     try {
-        $query = $db->prepare('INSERT INTO users (username, password, role_id) VALUES (:username, :password, 2)' );
+        $query = $db->prepare('INSERT INTO users (username, password) VALUES (:username, :password)' );
         $query->bindParam(':username', $username);
         $query->bindParam(':password', $password);
         $query->execute();
