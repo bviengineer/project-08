@@ -13,7 +13,7 @@ if ($newPassword != $confirmedPassword) {
     redirect('/account.php');
 }
 
-// Retrieves user using the 'sub' of the jwt
+// Retrieves username using the 'sub' of the jwt
 $user = findUserByAccessToken();
 
 // If a username could not be found 
