@@ -14,6 +14,12 @@ if (!password_verify(request()->get('password'), $user['password'])) {
     redirect('/login.php');
 }
 
+// For auto login
+$session->set('auth_logged_in', true);
+$session->set('auth_auth_id', (int) $user['id']);
+// $session->set('auth_roles', (int) $user['role_id']);
+$session->getFlashBag()->add('success', "Successfully Logged In");
+
 // JWT | JOT
 $expireTime = time() + 3600;
 $jwt = \Firebase\JWT\JWT::encode([
@@ -22,7 +28,7 @@ $jwt = \Firebase\JWT\JWT::encode([
     'exp' => $expireTime,
     'iat' => time(),
     'nbf' => time(),
-    'is_admin' => $user['role_id'] == 1
+    //'is_admin' => $user['role_id'] == 1
 ], getenv("SECRET_KEY"), 'HS256');
 
 // Cookie
