@@ -85,6 +85,9 @@ function decodeJwt($prop = null) {
 }
 // Verifies whether a user is autenticated 
 function isAuthenticated() {
+    global $session;
+    return $session->get('auth_logged_in', false);
+
     if (!request()->cookies->has('access_token')) {
         return false;
     }
