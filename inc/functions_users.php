@@ -99,8 +99,10 @@ function isAuthenticated() {
 }
 // Require a user to authenticate
 function requireAuth() {
+    global $session;
     if (!isAuthenticated()) {
         $accessToken = new \Symfony\Component\HttpFoundation\Cookie('access_token', 'Expired', time()-3600, '/', getenv('COOKIE_DOMAIN'));
+        $session->getFlashBag()->add('error', 'Please login to access this resoruce');
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
 }
