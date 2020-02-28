@@ -24,5 +24,8 @@ if (!empty($user)) {
 // Adds new user to database if password & username verification steps are successful
 $user = createUser($username, $hashedPwd);
 
+// Registration success and logged in confirmation message
+$session->getFlashBag()->add('success', "Account Created! You are Logged In.");
+
 // Redirect user to the home page after creating user 
 redirect('/');
