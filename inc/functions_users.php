@@ -160,7 +160,7 @@ function displayCompletedlUserTasks() {
     }
 }
 // Display completed tasks assiged to logged in user
-function displayIncompletelUserTasks() {
+function displayIncompleteUserTasks() {
     global $db;
 
     if (isAuthenticated()) {

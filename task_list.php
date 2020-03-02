@@ -15,7 +15,7 @@ if ($filter=='all') {
 } else {
     $filter = 'incomplete';
     // $tasks = getIncompleteTasks();
-    $tasks = displayIncompletelUserTasks();
+    $tasks = displayIncompleteUserTasks();
 }
 
 include 'inc/header.php';
