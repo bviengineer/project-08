@@ -9,7 +9,7 @@
 */ 
 
 
-// Fin a user by username
+// Find a user by username
 function findUserByUsername($username) {
     global $db;
     try {
